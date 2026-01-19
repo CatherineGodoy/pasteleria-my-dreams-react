@@ -1,25 +1,29 @@
-🧁 Pastelería My Dreams — React App
-Migración y modernización del sitio web 'Pastelería My Dreams'.  
-Reconstrucción completa del proyecto original en HTML/CSS hacia una Single Page Application (SPA) desarrollada con React.
+# 🧁 Pastelería My Dreams — React App
 
-✨ Logros de esta Entrega
-✅ Migración Completa: Estructura modular basada en componentes reutilizables
+> **Migración y modernización del sitio web 'Pastelería My Dreams'.**  
+> La primera versión fue desarrollada con **HTML, CSS y JavaScript** clásico.  
+> En esta nueva entrega, el proyecto fue reconstruido como una **Single Page Application (SPA)** con **React**, utilizando **Vite** como bundler y **React Router** para la navegación.
 
-✅ Rutas Navegables: Uso de react-router-dom para una experiencia fluida
+---
 
-✅ Formulario de Contacto: Validaciones de seguridad y feedback al usuario
+## ✨ Logros de esta Entrega
+- ✅ **Migración Completa:** Estructura modular basada en componentes reutilizables  
+- ✅ **Rutas Navegables:** Uso de `react-router-dom` para una experiencia fluida  
+- ✅ **Formulario de Contacto:** Validaciones de seguridad y feedback al usuario  
+- ✅ **UX/UI:** Pantalla de mantenimiento animada y descripciones sincronizadas  
 
-✅ UX/UI: Pantalla de mantenimiento animada y descripciones sincronizadas
+---
 
-🛠️ Tecnologías
-⚛️ React 19 + Vite 7
+## 🛠️ Tecnologías
+- ⚛️ **React 19** + **Vite 7**  
+- 🌐 **React Router 7**  
+- 🎨 **CSS3** (Animaciones y Diseño Responsive)  
 
-🌐 React Router 7
+---
 
-🎨 CSS3 (Animaciones y Diseño Responsive)
+## 💻 Instalación y Ejecución
 
-💻 Instalación y Ejecución
-bash
+```bash
 # 1. Clonar repositorio
 git clone https://github.com/CatherineGodoy/pasteleria-my-dreams-react.git
 
@@ -28,19 +32,32 @@ npm install
 
 # 3. Correr el proyecto
 npm run dev
-🚧 Roadmap de Próximos Pasos
-🔹 Fase de Calidad (En proceso 🧪)
-[x] Formulario de contacto con validaciones
 
-[ ] Configuración de Vitest / Testing Library
+## 🚧 Roadmap de Próximos Pasos
 
-[ ] Creación de carpeta /tests y pruebas unitarias de componentes
+### 🔹 Fase de Calidad (En proceso 🧪)
+- [x] Formulario de contacto con validaciones  
+- [ ] Configuración de Vitest / Testing Library  
+- [ ] Creación de carpeta `/tests` y pruebas unitarias de componentes  
 
-🔹 Fase de Escalabilidad
-[ ] Implementación de Backend y Base de Datos
+### 🔹 Fase de Escalabilidad
+- [ ] Implementación de Backend y Base de Datos  
+- [ ] Sistema de autenticación de usuarios  
 
-[ ] Sistema de autenticación de usuarios
+---
 
-👩‍💻 Autor
-Desarrollado por Catherine Godoy
-🔗 GitHub: CatherineGodoy
+## 🔄 Evolución del Proyecto
+La primera versión de **Pastelería My Dreams** fue desarrollada con **HTML, CSS y JavaScript** clásico.  
+En esta nueva entrega, el proyecto fue migrado a **React** con **Vite**, logrando:
+
+- Modularización en componentes reutilizables  
+- Navegación fluida sin recarga de página  
+- Mejor mantenimiento y escalabilidad  
+- Integración de estilos y lógica directamente en cada vista  
+
+---
+
+## 👩‍💻 Autor
+Desarrollado por **Catherine Godoy**  
+
+[🔗 GitHub: CatherineGodoy](https://github.com/CatherineGodoy)
