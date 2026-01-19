@@ -1,78 +1,46 @@
-# 🍰 Pastelería My Dreams
+🧁 Pastelería My Dreams — React App
+Migración y modernización del sitio web 'Pastelería My Dreams'.  
+Reconstrucción completa del proyecto original en HTML/CSS hacia una Single Page Application (SPA) desarrollada con React.
 
-> **Migración y modernización del sitio web 'Pastelería My Dreams'.**
-> Reconstrucción completa del proyecto original en HTML/CSS hacia una Single Page Application (SPA) desarrollada con React.
+✨ Logros de esta Entrega
+✅ Migración Completa: Estructura modular basada en componentes reutilizables
 
-Este proyecto representa la evolución de mi primer sitio web, aplicando buenas prácticas modernas de desarrollo frontend, arquitectura basada en componentes reutilizables y navegación fluida sin recargas.
+✅ Rutas Navegables: Uso de react-router-dom para una experiencia fluida
 
-## 🚀 Demo
-🔗 *(Próximamente)*
+✅ Formulario de Contacto: Validaciones de seguridad y feedback al usuario
 
-## 🛠️ Tecnologías y Herramientas
-El proyecto está construido utilizando un stack moderno (Bleeding Edge) de desarrollo frontend:
+✅ UX/UI: Pantalla de mantenimiento animada y descripciones sincronizadas
 
-* **⚛️ React 19** – Librería para la construcción de interfaces de usuario (Última versión).
-* **⚡ Vite 7** – Entorno de desarrollo de nueva generación.
-* **🧭 React Router DOM 7** – Navegación SPA avanzada.
-* **🎨 CSS Modular** – Estilos organizados por componente.
-* **🔧 Git & GitHub** – Control de versiones.
+🛠️ Tecnologías
+⚛️ React 19 + Vite 7
 
-## ✨ Funcionalidades
-* ✅ **Navegación SPA:** Cambio de vistas sin recargar la página.
-* ✅ **Arquitectura por Componentes:** Header y Footer reutilizables en toda la aplicación.
-* ✅ **Galería Dinámica:** Importación y renderizado optimizado de imágenes.
-* ✅ **Diseño Responsive:** Adaptado a dispositivos móviles y escritorio.
+🌐 React Router 7
 
-## 📂 Estructura del Proyecto
+🎨 CSS3 (Animaciones y Diseño Responsive)
 
-```text
-src/
-├── components/     # Componentes reutilizables (Header, Footer, etc.)
-├── pages/          # Vistas principales
-├── assets/         # Imágenes y recursos
-├── styles/         # Estilos CSS
-├── App.jsx
-└── main.jsx
-
-💻 Instalación y Ejecución Local
-Sigue estos pasos para clonar y ejecutar el proyecto en tu máquina:
-
-Clonar el repositorio
-
-Bash
+💻 Instalación y Ejecución
+bash
+# 1. Clonar repositorio
 git clone https://github.com/CatherineGodoy/pasteleria-my-dreams-react.git
-Entrar al proyecto
 
-Bash
-cd pasteleria-my-dreams-react
-Instalar dependencias
-
-Bash
+# 2. Instalar dependencias
 npm install
-Iniciar servidor de desarrollo
 
-Bash
+# 3. Correr el proyecto
 npm run dev
-Abrir en el navegador: Ingresa a http://localhost:5173
+🚧 Roadmap de Próximos Pasos
+🔹 Fase de Calidad (En proceso 🧪)
+[x] Formulario de contacto con validaciones
 
-🚧 Roadmap (Próximos Pasos)
-🔹 Próxima entrega (Frontend)
-[ ] Formulario de contacto funcional con validaciones.
+[ ] Configuración de Vitest / Testing Library
 
-[ ] Configuración de entorno de pruebas (Vitest / Testing Library).
+[ ] Creación de carpeta /tests y pruebas unitarias de componentes
 
-[ ] Pruebas unitarias de componentes.
+🔹 Fase de Escalabilidad
+[ ] Implementación de Backend y Base de Datos
 
-🔹 Siguiente etapa (Backend)
-[ ] Implementación de backend.
+[ ] Sistema de autenticación de usuarios
 
-[ ] Autenticación de usuarios (Login).
-
-[ ] Integración base de datos para productos.
-
-📌 Notas del Proyecto
-Este proyecto utiliza React 19, aprovechando las últimas mejoras de rendimiento y estabilidad del ecosistema.
-
-Desarrollado con ❤️ por Catherine Godoy
-
-🔗 Mi GitHub
+👩‍💻 Autor
+Desarrollado por Catherine Godoy
+🔗 GitHub: CatherineGodoy
