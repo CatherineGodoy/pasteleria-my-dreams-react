@@ -1,0 +1,54 @@
+/* ============================================================
+   CONFIGURACIÓN DEL CONTENEDOR PRINCIPAL
+   ============================================================ */
+
+.app-container {
+  /* Permite que la barra lila (Header) ocupe todo el ancho de la pantalla */
+  width: 100%; 
+  
+  /* Activa Flexbox para organizar el Header, el Contenido y el Footer en columna */
+  display: flex;
+  flex-direction: column;
+  
+  /* Asegura que la página siempre ocupe el 100% de la altura de la ventana */
+  min-height: 100vh; 
+}
+
+/* ============================================================
+   CONTENEDOR DEL CONTENIDO (CATÁLOGO, CONTACTO, ETC.)
+   ============================================================ */
+
+.main-content {
+  /* Flex: 1 hace que el contenido crezca y empuje el Footer siempre hacia abajo */
+  flex: 1; 
+  
+  /* Centra el catálogo y evita que las fotos toquen los bordes en pantallas grandes */
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  /* Espacio interno para que el texto no respire pegado a los lados */
+  padding: 40px 20px;
+  
+  /* Asegura que el ancho se calcule bien incluyendo el padding */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   ANIMACIÓN DE ENTRADA (Efecto suave al cargar)
+   ============================================================ */
+
+.main-content {
+  animation: fadeInPage 0.8s ease-in-out;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -30,6 +30,9 @@ import imgCupcakes from "../assets/img/cupcakesVariedades.jpg";
 import imgBrownie from "../assets/img/brownieChocolateNuez.jpg";
 import imgDonas from "../assets/img/donasGlaseadas.jpg";
 
+import React from 'react';
+// No olvides importar todas tus imágenes aquí arriba como lo tienes en tu archivo original
+
 function Delicias() {
   return (
     <main>
@@ -45,45 +48,31 @@ function Delicias() {
         <div className="producto">
           <img src={imgMerengue} alt="Merengue Frambuesa" />
           <h3>Merengue Frambuesa</h3>
-          <p>
-            Nube de dulzura con discos de merengue, crema chantilly y frambuesas
-            frescas.
-          </p>
+          <p>Nube de dulzura con discos de merengue, crema chantilly y frambuesas frescas.</p>
         </div>
 
         <div className="producto">
           <img src={imgSelva} alt="Selva Negra" />
           <h3>Selva Negra</h3>
-          <p>
-            Clásico bizcocho de chocolate, licor de cereza, crema y guindas.
-          </p>
+          <p>Clásico bizcocho de chocolate, licor de cereza, crema y guindas.</p>
         </div>
 
         <div className="producto">
           <img src={imgLucuma} alt="Manjar Lúcuma" />
           <h3>Manjar Lúcuma</h3>
-          <p>
-            Tradición chilena: bizcocho suave con manjar y crema de lúcuma
-            natural.
-          </p>
+          <p>Tradición chilena: bizcocho suave con manjar y crema de lúcuma natural.</p>
         </div>
 
         <div className="producto">
           <img src={imgPina} alt="Crema Piña" />
-          <h3>Crema Piña</h3>
-          <p>
-            Frescura tropical con bizcocho mojadito, crema suave y trozos de
-            piña.
-          </p>
+          <h3>Torta Crema Piña</h3>
+          <p>Frescura tropical con bizcocho mojadito, crema suave y trozos de piña.</p>
         </div>
 
         <div className="producto">
           <img src={imgManjar} alt="Manjar Nuez" />
           <h3>Manjar Nuez</h3>
-          <p>
-            La favorita: capas de bizcocho unidas por abundante manjar y nueces
-            picadas.
-          </p>
+          <p>La favorita: capas de bizcocho unidas por abundante manjar y nueces picadas.</p>
         </div>
       </div>
 
@@ -93,23 +82,19 @@ function Delicias() {
         <div className="producto">
           <img src={imgMarmol} alt="Queque Marmoleado" />
           <h3>Queque Marmoleado</h3>
-          <p>Lo mejor de dos mundos: una hermosa mezcla de vainilla y cacao.</p>
+          <p>Lo mejor de dos mundos: una hermosa mezcla de vainilla y cacao puro.</p>
         </div>
 
         <div className="producto">
           <img src={imgVainilla} alt="Queque Vainilla" />
           <h3>Queque Vainilla</h3>
-          <p>
-            Sencillo y perfecto. Ideal para la hora del té, con esencia natural.
-          </p>
+          <p>Sencillo y perfecto. Ideal para la hora del té, con esencia natural de vainilla.</p>
         </div>
 
         <div className="producto">
           <img src={imgArandano} alt="Queque Arándano" />
           <h3>Queque Arándano</h3>
-          <p>
-            Explosión de sabor con masa húmeda cargada de arándanos frescos.
-          </p>
+          <p>Explosión de sabor con masa húmeda cargada de arándanos frescos del huerto.</p>
         </div>
       </div>
 
@@ -119,37 +104,25 @@ function Delicias() {
         <div className="producto">
           <img src={imgFrutas} alt="Tartaleta Frutal" />
           <h3>Tartaleta Frutal</h3>
-          <p>
-            Base crujiente, crema pastelera suave y un mix de frutas de la
-            estación.
-          </p>
+          <p>Base crujiente, crema pastelera suave y un mix de frutas de la estación.</p>
         </div>
 
         <div className="producto">
           <img src={imgYogurt} alt="Tarta de Yogurt" />
           <h3>Tarta de Yogurt</h3>
-          <p>
-            Ligera y refrescante. Mousse de yogurt con capa brillante de
-            frambuesa.
-          </p>
+          <p>Ligera y refrescante. Mousse de yogurt con capa brillante de frambuesa.</p>
         </div>
 
         <div className="producto">
           <img src={imgPie} alt="Pie de Limón" />
           <h3>Pie de Limón</h3>
-          <p>
-            Ácido y dulce. Crema de limón sobre base de galleta y merengue
-            tostado.
-          </p>
+          <p>Ácido y dulce. Crema de limón sobre base de galleta y merengue tostado.</p>
         </div>
 
         <div className="producto">
           <img src={imgKuchen} alt="Kuchen Manzana" />
-          <h3>Kuchen Manzana</h3>
-          <p>
-            Receta casera de la abuela: con manzanas frescas, masa suave y un
-            toque de canela.
-          </p>
+          <h3>Kuchen de Manzana</h3>
+          <p>Receta casera: con manzanas frescas, masa suave y un toque de canela.</p>
         </div>
       </div>
 
@@ -159,45 +132,31 @@ function Delicias() {
         <div className="producto">
           <img src={imgMuffins} alt="Muffins Plátano" />
           <h3>Muffins Plátano Arándano</h3>
-          <p>
-            Energía saludable en formato individual. Plátano maduro y arándanos.
-          </p>
+          <p>Energía saludable en formato individual con plátano maduro y arándanos.</p>
         </div>
 
         <div className="producto">
           <img src={imgRollos} alt="Rollos de Canela" />
           <h3>Rollos de Canela</h3>
-          <p>
-            Espirales de masa suave, canela intensa y un glaseado irresistible.
-          </p>
+          <p>Espirales de masa suave, canela intensa y un glaseado irresistible.</p>
         </div>
 
         <div className="producto">
           <img src={imgCupcakes} alt="Cupcakes Variedades" />
           <h3>Cupcakes Surtidos</h3>
-          <p>
-            Coloridos, esponjosos y con el frosting más dulce para alegrar tu
-            día.
-          </p>
+          <p>Coloridos, esponjosos y con el frosting más dulce para alegrar tu día.</p>
         </div>
 
         <div className="producto">
           <img src={imgBrownie} alt="Brownie Chocolate Nuez" />
           <h3>Brownie Chocolate Nuez</h3>
-          <p>
-            La perfección del chocolate: interior húmedo, cubierta crujiente y
-            nueces.
-          </p>
+          <p>La perfección del chocolate: interior húmedo, cubierta crujiente y nueces.</p>
         </div>
 
         <div className="producto">
           <img src={imgDonas} alt="Donas Glaseadas" />
           <h3>Donas Glaseadas</h3>
-          {/* OPCIÓN 3 SELECCIONADA: */}
-          <p>
-            El capricho perfecto. Esponjosas, con un glaseado suave y llenas de
-            color.
-          </p>
+          <p>El capricho perfecto. Esponjosas, con un glaseado suave y llenas de color.</p>
         </div>
       </div>
     </main>

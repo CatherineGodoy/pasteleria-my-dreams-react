@@ -26,19 +26,25 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* === LOGO (MEDALLÓN COLGANTE) === */
+
+/* === LOGO  === */
+
 .logo-container {
   position: absolute;
-  top: 45px; /* Esto hace que cuelgue hacia abajo */
+  top: 62px; /* Ajustado para que cuelgue de la barra lila */
   left: 20px;
   z-index: 102;
 }
 
 .logo-img {
-  height: 150px;
+  height: 90px; /* Reducido para que no tape el catálogo */
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3)); /* Resalta el logo sobre el fondo */
+}
+
+.logo-img:hover {
+  transform: scale(1.05); /* Efecto interactivo al pasar el mouse */
 }
 
 /* === MENÚ DE NAVEGACIÓN === */

@@ -1,0 +1,65 @@
+.login-mantenimiento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background-color: #fdf0f5; /* El color que ya tenías */
+}
+
+.mantenimiento-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(233, 30, 99, 0.1);
+  border: 2px dashed #e91e63;
+  max-width: 500px;
+  text-align: center;
+}
+
+.icon-animado {
+  font-size: 50px;
+  margin-bottom: 20px;
+  animation: hornear 2.5s infinite ease-in-out;
+}
+
+@keyframes hornear {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg) scale(1.1);
+  }
+}
+
+.mantenimiento-card h2 {
+  color: #e91e63;
+  margin-bottom: 15px;
+  font-family: "Great Vibes", cursive;
+  font-size: 2.5rem;
+}
+
+.barra-progreso {
+  width: 100%;
+  height: 10px;
+  background: #f0f0f0;
+  border-radius: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progreso-relleno {
+  width: 60%;
+  height: 100%;
+  background: #e91e63;
+  animation: carga 2s infinite linear;
+}
+
+@keyframes carga {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(180%);
+  }
+}
