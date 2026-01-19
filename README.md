@@ -1,63 +1,83 @@
 # 🧁 Pastelería My Dreams — React App
 
-> **Migración y modernización del sitio web 'Pastelería My Dreams'.**  
-> La primera versión fue desarrollada con **HTML, CSS y JavaScript** clásico.  
+> **Migración y modernización del sitio web 'Pastelería My Dreams'.** > La primera versión fue desarrollada con **HTML, CSS y JavaScript** clásico.  
 > En esta nueva entrega, el proyecto fue reconstruido como una **Single Page Application (SPA)** con **React**, utilizando **Vite** como bundler y **React Router** para la navegación.
 
 ---
 
 ## ✨ Logros de esta Entrega
-- ✅ **Migración Completa:** Estructura modular basada en componentes reutilizables  
-- ✅ **Rutas Navegables:** Uso de `react-router-dom` para una experiencia fluida  
-- ✅ **Formulario de Contacto:** Validaciones de seguridad y feedback al usuario  
-- ✅ **UX/UI:** Pantalla de mantenimiento animada y descripciones sincronizadas  
+
+- ✅ **Migración Completa:** Estructura modular basada en componentes reutilizables.
+- ✅ **Rutas Navegables:** Uso de `react-router-dom` para una experiencia fluida y sin recargas.
+- ✅ **Formulario de Contacto:** Validaciones de seguridad, contador de caracteres dinámico y feedback al usuario.
+- ✅ **Calidad de Código:** Implementación de pruebas unitarias y reportes de cobertura.
+- ✅ **UX/UI:** Diseño responsive, animaciones modernas y pantalla de mantenimiento.
 
 ---
 
 ## 🛠️ Tecnologías
-- ⚛️ **React 19** + **Vite 7**  
-- 🌐 **React Router 7**  
-- 🎨 **CSS3** (Animaciones y Diseño Responsive)  
+
+- ⚛️ **React 19** + **Vite 7**
+- 🌐 **React Router 7**
+- 🧪 **Vitest** + **React Testing Library**
+- 🎨 **CSS3** (Flexbox, Grid y Animaciones)
 
 ---
 
 ## 💻 Instalación y Ejecución
 
 ```bash
-# 1. Clonar repositorio
-git clone https://github.com/CatherineGodoy/pasteleria-my-dreams-react.git
+# 1. Clonar el repositorio
+git clone [https://github.com/CatherineGodoy/pasteleria-my-dreams-react.git](https://github.com/CatherineGodoy/pasteleria-my-dreams-react.git)
 
-# 2. Instalar dependencias
+# 2. Entrar a la carpeta del proyecto
+cd pasteleria-my-dreams-react
+
+# 3. Instalar todas las dependencias
 npm install
 
-# 3. Correr el proyecto
+# 4. Iniciar el servidor de desarrollo
 npm run dev
 
-## 🚧 Roadmap de Próximos Pasos
 
-### 🔹 Fase de Calidad (En proceso 🧪)
-- [x] Formulario de contacto con validaciones  
-- [ ] Configuración de Vitest / Testing Library  
-- [ ] Creación de carpeta `/tests` y pruebas unitarias de componentes  
+🧪 Testing y Calidad
 
-### 🔹 Fase de Escalabilidad
-- [ ] Implementación de Backend y Base de Datos  
-- [ ] Sistema de autenticación de usuarios  
+Para asegurar que el formulario de contacto y los componentes funcionen correctamente, se utiliza Vitest:
 
----
+# Ejecutar los tests una vez
+npx vitest run
 
-## 🔄 Evolución del Proyecto
-La primera versión de **Pastelería My Dreams** fue desarrollada con **HTML, CSS y JavaScript** clásico.  
-En esta nueva entrega, el proyecto fue migrado a **React** con **Vite**, logrando:
+# Ejecutar los tests y generar tabla de cobertura (%)
+npx vitest run --coverage
 
-- Modularización en componentes reutilizables  
-- Navegación fluida sin recarga de página  
-- Mejor mantenimiento y escalabilidad  
-- Integración de estilos y lógica directamente en cada vista  
+# Abrir la interfaz gráfica de Vitest en el navegador
+npx vitest --ui
 
----
 
-## 👩‍💻 Autor
-Desarrollado por **Catherine Godoy**  
+🚧 Roadmap de Próximos Pasos
 
-[🔗 GitHub: CatherineGodoy](https://github.com/CatherineGodoy)
+🔹 Fase de Calidad (¡Completada! 🧪)
+[x] Formulario de contacto con validaciones.
+
+[x] Configuración de Vitest / Testing Library.
+
+[x] Creación de carpeta /tests y pruebas unitarias con cobertura total.
+
+🔹 Fase de Escalabilidad
+[ ] Implementación de Backend y Base de Datos.
+
+[ ] Sistema de autenticación de usuarios.
+
+🔄 Evolución del Proyecto
+
+Este proyecto representa el paso de un sitio estático a una aplicación web moderna. Se logró:
+
+Modularización de la lógica.
+
+Mejor mantenimiento del código.
+
+Integración de herramientas de testing profesional.
+
+👩‍💻 Autor
+
+Desarrollado con ❤️ por **Catherine Godoy** | [🔗 Perfil de GitHub](https://github.com/CatherineGodoy)
