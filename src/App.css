@@ -1,54 +1,115 @@
 /* ============================================================
-   CONFIGURACIÓN DEL CONTENEDOR PRINCIPAL
+   1. CONFIGURACIÓN BASE Y CONTENEDORES 
    ============================================================ */
-
 .app-container {
-  /* Permite que la barra lila (Header) ocupe todo el ancho de la pantalla */
   width: 100%; 
-  
-  /* Activa Flexbox para organizar el Header, el Contenido y el Footer en columna */
   display: flex;
   flex-direction: column;
-  
-  /* Asegura que la página siempre ocupe el 100% de la altura de la ventana */
   min-height: 100vh; 
 }
 
-/* ============================================================
-   CONTENEDOR DEL CONTENIDO (CATÁLOGO, CONTACTO, ETC.)
-   ============================================================ */
-
 .main-content {
-  /* Flex: 1 hace que el contenido crezca y empuje el Footer siempre hacia abajo */
   flex: 1; 
-  
-  /* Centra el catálogo y evita que las fotos toquen los bordes en pantallas grandes */
   max-width: 1200px;
   margin: 0 auto;
-  
-  /* Espacio interno para que el texto no respire pegado a los lados */
   padding: 40px 20px;
-  
-  /* Asegura que el ancho se calcule bien incluyendo el padding */
   width: 100%;
   box-sizing: border-box;
-}
-
-/* ============================================================
-   ANIMACIÓN DE ENTRADA (Efecto suave al cargar)
-   ============================================================ */
-
-.main-content {
   animation: fadeInPage 0.8s ease-in-out;
 }
 
 @keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   2. TÍTULOS DEL CATÁLOGO 
+   ============================================================ */
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  
+}
+
+.subtitulo {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+.categoria-titulo {
+  text-align: left;
+  margin: 50px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee; /* Línea sutil */
+}
+
+/* ============================================================
+   3. VITRINA 
+   ============================================================ */
+.vitrina {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding-bottom: 40px;
+}
+
+/* ============================================================
+   4. TARJETA DE PRODUCTO 
+   ============================================================ */
+.producto {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.producto:hover {
+  transform: translateY(-8px);
+}
+
+/* ARREGLO DE IMÁGENES: Altura uniforme y sin deformar */
+.producto img {
+  width: 100%;
+  height: 220px; 
+  object-fit: cover; 
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.producto h3 {
+  margin: 15px 0 10px;
+  font-size: 1.8rem; 
+  font-weight: 700;   
+  color: #d81b60;    
+  line-height: 1.2;
+  min-height: 3.6rem; /* Esto asegura que aunque el nombre sea corto, ocupe el mismo espacio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.producto p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+  margin: 0;
+  flex-grow: 1; /* Esto alinea los botones o finales de tarjeta */
+}
+
+/* ============================================================
+   5. RESPONSIVIDAD (PARA CELULARES)
+   ============================================================ */
+@media (max-width: 600px) {
+  .vitrina {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  
+  .categoria-titulo { text-align: center; }
 }
