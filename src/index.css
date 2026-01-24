@@ -1,231 +1,40 @@
-/* =========================================
-   1. CONFIGURACIÓN GENERAL
-   ========================================= */
+/* FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+
 body {
-  background-color: #fff0f5;
+  background-color: #fff0f5; /* El rosado suave que te gusta */
   font-family: "Montserrat", sans-serif;
   color: #5d405d;
   margin: 0;
-  line-height: 1.6;
 }
 
-/* =========================================
-   2. ENCABEZADO (HEADER)
-   ========================================= */
-.header-container {
-  background-color: #d8bfd8;
-  height: 60px;
-  padding: 0 40px;
-
+/* EL TRUCO PARA EL FOOTER (Sticky Footer) */
+.app-container {
   display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Menú a la derecha */
-
-  position: relative;
-  z-index: 100;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa el 100% de la pantalla */
 }
 
-
-/* === LOGO  === */
-
-.logo-container {
-  position: absolute;
-  top: 62px; /* Ajustado para que cuelgue de la barra lila */
-  left: 20px;
-  z-index: 102;
+.main-content {
+  flex: 1; /* Esto empuja al footer hacia abajo automáticamente */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.logo-img {
-  height: 90px; /* Reducido para que no tape el catálogo */
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3)); /* Resalta el logo sobre el fondo */
-}
-
-.logo-img:hover {
-  transform: scale(1.05); /* Efecto interactivo al pasar el mouse */
-}
-
-/* === MENÚ DE NAVEGACIÓN === */
-.nav-menu ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-menu a {
-  font-family: "Great Vibes", cursive;
-  font-size: 1.8rem;
-  color: #5d405d;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-menu a:hover {
-  color: #d95386;
-}
-
-/* === LOGIN (SOLO TEXTO) === */
-.login-item a {
-  font-family: "Great Vibes", cursive !important;
-  font-size: 1.8rem !important;
-  color: #5d405d !important;
-  background-color: transparent !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-}
-
-.login-item a:hover {
-  color: #d95386 !important;
-}
-
-/* =========================================
-   3. TÍTULOS Y TEXTOS
-   ========================================= */
-h1,
-h2,
-h3 {
+h1, h2 {
   font-family: "Great Vibes", cursive;
   color: #d95386;
   text-align: center;
   font-weight: 400;
-  letter-spacing: 1px;
-}
-
-h1 {
-  margin-top: 80px; /* Margen para que no choque con el logo */
-  font-size: 3.5rem;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 2.8rem;
-  margin-top: 30px;
-}
-
-.subtitulo {
-  text-align: center;
-  margin-bottom: 30px;
-  padding: 0 20px;
-}
-
-.intro {
-  text-align: center;
-  margin-bottom: 24px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* =========================================
-   4. VITRINA DE PRODUCTOS
-   ========================================= */
-.productos {
-  padding: 0 20px;
-  margin-bottom: 50px;
-}
-
-.vitrina {
-  display: grid;
-  /* ESTO EVITA QUE SE HAGAN GIGANTES: Máximo 300px por tarjeta */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-  justify-content: center;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.producto {
-  background-color: #fffdf5;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease;
-
-  /* Candado de seguridad para el tamaño */
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.producto:hover {
-  transform: translateY(-5px);
-}
-
-.producto img {
-  width: 100%;
-  height: 200px; /* Altura fija para uniformidad */
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
-
-.producto h3 {
-  margin: 15px 0 10px;
-  font-size: 1.8rem;
-  line-height: 1.1;
-}
-
-.producto p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #5d405d;
-  font-family: "Montserrat", sans-serif;
-}
-
-/* =========================================
-   5. BOTÓN Y FOOTER
-   ========================================= */
-.boton {
-  display: block;
-  width: fit-content;
-  text-decoration: none;
-  text-align: center;
-  margin: 40px auto 0;
-  background-color: #d95386;
-  color: white;
-  padding: 12px 35px;
-  border: none;
-  border-radius: 50px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(217, 83, 134, 0.4);
-  transition: all 0.3s ease;
-}
-
-.boton:hover {
-  background-color: #c03568;
-  transform: translateY(-3px);
 }
 
 footer {
   background-color: #5d405d;
   color: #ffffff;
-  padding: 20px 0;
-  margin-top: 50px;
+  padding: 25px 0;
   text-align: center;
-  font-size: 0.95rem;
   font-family: "Montserrat", sans-serif;
-}
-
-/* =========================================
-   6. FOOTER SIEMPRE ABAJO (Sticky Footer)
-   ========================================= */
-
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* La página ocupa SIEMPRE toda la altura de la ventana */
-}
-
-.main-content {
-  flex: 1; /* El contenido empuja el footer hacia el fondo si la página está vacía */
 }

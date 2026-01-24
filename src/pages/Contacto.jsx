@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Contacto.css";
+import '../App.css'; 
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,15 @@ const Contacto = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    
+    // BLOQUEO DE LETRAS: Si es el teléfono, eliminamos todo lo que no sea número
+    if (id === "telefono") {
+      const soloNumeros = value.replace(/\D/g, ""); 
+      setFormData({ ...formData, [id]: soloNumeros });
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
+
     if (errores[id]) {
       setErrores({ ...errores, [id]: "" });
     }
@@ -27,8 +35,8 @@ const Contacto = () => {
 
     const patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
     const patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const patronTelefono = /^[0-9]+$/;
 
+    // Validación Nombre
     if (!formData.nombre.trim()) {
       nuevosErrores.nombre = "Por favor, ingresa tu nombre.";
       esValido = false;
@@ -37,39 +45,37 @@ const Contacto = () => {
       esValido = false;
     }
 
+    // Validación Email
     if (!formData.email.trim()) {
       nuevosErrores.email = "El correo electrónico es obligatorio.";
       esValido = false;
     } else if (!patronEmail.test(formData.email)) {
-      nuevosErrores.email = "Ingresa un formato de correo válido (ejemplo@correo.com).";
+      nuevosErrores.email = "Ingresa un formato de correo válido.";
       esValido = false;
     }
 
-    const telLimpio = formData.telefono.replace(/\s/g, "");
+    // LÓGICA MEJORADA DE TELÉFONO
+    const telLimpio = formData.telefono.trim();
     if (!telLimpio) {
-      nuevosErrores.telefono = "El teléfono es necesario para coordinar tu pedido.";
+      nuevosErrores.telefono = "El teléfono es obligatorio.";
+      esValido = false;
+    } else if (!/^\d+$/.test(telLimpio)) {
+      nuevosErrores.telefono = "No se permiten letras, ingresa solo números.";
       esValido = false;
     } else if (telLimpio.length !== 8) {
       nuevosErrores.telefono = "El teléfono debe tener exactamente 8 dígitos.";
       esValido = false;
-    } else if (!patronTelefono.test(telLimpio)) {
-      nuevosErrores.telefono = "Ingresa solo números.";
-      esValido = false;
     }
 
+    // Validación Asunto
     if (!formData.asunto) {
-      nuevosErrores.asunto = "Por favor, selecciona un motivo de contacto.";
+      nuevosErrores.asunto = "Selecciona un motivo.";
       esValido = false;
     }
 
-    if (!formData.mensaje.trim()) {
-      nuevosErrores.mensaje = "Por favor, escribe tu mensaje.";
-      esValido = false;
-    } else if (formData.mensaje.length < 20) {
-      nuevosErrores.mensaje = `¡Tu opinión nos importa! Tu mensaje tiene ${formData.mensaje.length} caracteres, por favor escribe al menos 20 para poder ayudarte mejor.`;
-      esValido = false;
-    } else if (formData.mensaje.length > 500) {
-      nuevosErrores.mensaje = "El mensaje excede el límite de 500 caracteres.";
+    // Validación Mensaje
+    if (!formData.mensaje.trim() || formData.mensaje.length < 20) {
+      nuevosErrores.mensaje = "Tu mensaje debe tener al menos 20 caracteres.";
       esValido = false;
     }
 
@@ -81,6 +87,7 @@ const Contacto = () => {
     e.preventDefault();
     if (validarFormulario()) {
       setMostrarExito(true);
+      // Aquí es donde conectarás la fetch(API) pronto
       setFormData({ nombre: "", email: "", telefono: "", asunto: "", mensaje: "" });
       setTimeout(() => setMostrarExito(false), 5000);
     }
@@ -88,12 +95,15 @@ const Contacto = () => {
 
   return (
     <main className="main-content">
-      <div className="contenedor-contacto">
-        <h1>¡Contáctanos!</h1>
-        <p className="intro">Tu opinión es nuestro ingrediente secreto. Cuéntanos qué necesitas.</p>
+      <h1 className="titulo-principal">¡Contáctanos!</h1>
+      <p className="subtitulo-home">
+        Tu opinión es nuestro ingrediente secreto. Cuéntanos qué necesitas.
+      </p>
 
-        <form onSubmit={handleSubmit} className="formulario" noValidate>
-          <div className="campo">
+      <div className="formulario-container">
+        <form onSubmit={handleSubmit} noValidate>
+          
+          <div className="form-group">
             <label htmlFor="nombre">Nombre Completo:</label>
             <input
               type="text"
@@ -101,12 +111,12 @@ const Contacto = () => {
               value={formData.nombre}
               onChange={handleChange}
               placeholder="Ej: María Pérez"
-              style={{ borderColor: errores.nombre ? "#D95386" : "#E6E6E6" }}
+              className={errores.nombre ? "input-error" : ""}
             />
-            {errores.nombre && <span className="error">{errores.nombre}</span>}
+            {errores.nombre && <span className="error-text">{errores.nombre}</span>}
           </div>
 
-          <div className="campo">
+          <div className="form-group">
             <label htmlFor="email">Correo Electrónico:</label>
             <input
               type="email"
@@ -114,34 +124,32 @@ const Contacto = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Ej: maria@correo.com"
-              style={{ borderColor: errores.email ? "#D95386" : "#E6E6E6" }}
+              className={errores.email ? "input-error" : ""}
             />
-            {errores.email && <span className="error">{errores.email}</span>}
+            {errores.email && <span className="error-text">{errores.email}</span>}
           </div>
 
-          <div className="campo">
-            <label htmlFor="telefono">Teléfono de contacto:</label>
-            <div className="telefono-container">
-              <span className="prefijo">+56 9</span>
-              <input
-                type="tel"
-                id="telefono"
-                value={formData.telefono}
-                onChange={handleChange}
-                placeholder="1234 5678"
-                style={{ borderColor: errores.telefono ? "#D95386" : "#E6E6E6" }}
-              />
-            </div>
-            {errores.telefono && <span className="error">{errores.telefono}</span>}
+          <div className="form-group">
+            <label htmlFor="telefono">Teléfono (+56 9):</label>
+            <input
+              type="tel"
+              id="telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+              placeholder="1234 5678"
+              maxLength="8" // Evita que escriban más de 8
+              className={errores.telefono ? "input-error" : ""}
+            />
+            {errores.telefono && <span className="error-text">{errores.telefono}</span>}
           </div>
 
-          <div className="campo">
+          <div className="form-group">
             <label htmlFor="asunto">Motivo del mensaje:</label>
             <select
               id="asunto"
               value={formData.asunto}
               onChange={handleChange}
-              style={{ borderColor: errores.asunto ? "#D95386" : "#E6E6E6" }}
+              className={errores.asunto ? "input-error" : ""}
             >
               <option value="">Selecciona una opción...</option>
               <option value="pedido">Hacer un pedido</option>
@@ -149,33 +157,32 @@ const Contacto = () => {
               <option value="felicitacion">Felicitaciones</option>
               <option value="reclamo">Reclamo</option>
             </select>
-            {errores.asunto && <span className="error">{errores.asunto}</span>}
+            {errores.asunto && <span className="error-text">{errores.asunto}</span>}
           </div>
 
-          <div className="campo">
+          <div className="form-group">
             <label htmlFor="mensaje">Tu Mensaje:</label>
             <textarea
               id="mensaje"
-              rows="6"
+              rows="5"
               value={formData.mensaje}
               onChange={handleChange}
-              placeholder="Ej: Hola, me gustaría cotizar una torta..."
-              maxLength={500}
-              style={{ borderColor: errores.mensaje ? "#D95386" : "#E6E6E6" }}
+              placeholder="Cuéntanos cómo podemos ayudarte..."
+              className={errores.mensaje ? "input-error" : ""}
             ></textarea>
-            <div style={{ textAlign: "right", marginTop: "5px" }}>
-              <small style={{ color: formData.mensaje.length >= 500 ? "#D95386" : "#666", fontWeight: "bold" }}>
-                {Math.max(0, 500 - formData.mensaje.length)} caracteres restantes
-              </small>
-            </div>
-            {errores.mensaje && <span className="error">{errores.mensaje}</span>}
+            <small className="char-count">
+              {500 - formData.mensaje.length} caracteres restantes
+            </small>
+            {errores.mensaje && <span className="error-text">{errores.mensaje}</span>}
           </div>
 
-          <button type="submit" className="boton">Enviar mensaje 💌</button>
+          <button type="submit" className="boton">
+            Enviar mensaje 
+          </button>
 
           {mostrarExito && (
-            <div id="mensaje-exito">
-              ¡Gracias! Hemos recibido tu mensaje. Te responderemos muy pronto. 🧁
+            <div className="mensaje-exito-alerta">
+              ¡Gracias! Mensaje recibido con éxito. 🧁
             </div>
           )}
         </form>

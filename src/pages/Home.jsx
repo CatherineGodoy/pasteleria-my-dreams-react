@@ -1,56 +1,75 @@
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-// IMÁGENES EXACTAS (Según tu estructura de archivos)
-import imgKutchen from '../assets/img/kutchenDeManzana.jpg'
-import imgPie from '../assets/img/pieDeLimon.jpg'
-import imgTorta from '../assets/img/tortaCremaPiña.jpg'
+// IMPORTACIÓN CON NOMBRES EXACTOS
+import imgKutchen from '../assets/img/kutchenDeManzana.jpg'; 
+import imgPie from '../assets/img/pieDeLimon.jpg';
+import imgTorta from '../assets/img/tortaCremaPiña.jpg';
 
 function Home() {
-  return (
-    <main>
-      <h1>Bienvenido a Pastelería My Dreams</h1>
-      <p className="subtitulo">
-        Somos un emprendimiento familiar que te entrega sabores que iluminan tus sueños.
-      </p>
+  const productosDestacados = [
+    { 
+      id: 1, 
+      nombre: 'Kutchen de Manzana', 
+      descripcion: 'Delicioso kutchen casero con manzanas frescas y un toque de canela.', 
+      imagen: imgKutchen,
+      precio: '$5.500' // Agregamos el precio al objeto
+    },
+    { 
+      id: 2, 
+      nombre: 'Pie de Limón', 
+      descripcion: 'Nuestra receta clásica con merengue suizo dorado a la perfección.', 
+      imagen: imgPie,
+      precio: '$6.500' // Agregamos el precio al objeto
+    },
+    { 
+      id: 3, 
+      nombre: 'Torta Crema Piña', 
+      descripcion: 'Bizcocho esponjoso relleno de crema chantilly y trozos de piña natural.', 
+      imagen: imgTorta,
+      precio: '$7.000' // Agregamos el precio al objeto
+    }
+  ];
 
-      <section className="productos">
-        <h2>Favoritos de la Casa</h2>
+  return (
+    <main className="main-content">
+      <section className="hero">
+        <h1 className="titulo-principal">Bienvenido a Pastelería My Dreams</h1>
+        <p className="subtitulo-home">
+          Somos un emprendimiento familiar que te entrega sabores que iluminan tus sueños.
+        </p>
+      </section>
+
+      <section className="productos-favoritos">
+        <h2 className="titulo-seccion">Favoritos de la Casa</h2>
+        <p className="seccion-subtitulo">
+          Descubre nuestras recetas más populares y sabrosas
+        </p>
 
         <div className="vitrina">
-          {/* Producto 1: Kuchen de Manzana */}
-          <div className="producto">
-            <img src={imgKutchen} alt="Kuchen de Manzana" />
-            <h3>Kuchen de Manzana</h3>
-            <p className="descripcion-corta">
-              Receta casera: con manzanas frescas, masa suave y un toque de canela.
-            </p>
-          </div>
-
-          {/* Producto 2: Pie de Limón */}
-          <div className="producto">
-            <img src={imgPie} alt="Pie de Limón" />
-            <h3>Pie de Limón</h3>
-            <p className="descripcion-corta">
-              Ácido y dulce. Crema de limón sobre base de galleta y merengue tostado.
-            </p>
-          </div>
-
-          {/* Producto 3: Torta Crema Piña */}
-          <div className="producto">
-            <img src={imgTorta} alt="Torta de Piña" />
-            <h3>Torta Crema Piña</h3>
-            <p className="descripcion-corta">
-              Frescura tropical con bizcocho mojadito, crema suave y trozos de piña.
-            </p>
-          </div>
+          {productosDestacados.map((prod) => (
+            <div className="producto" key={prod.id}>
+              <div className="img-wrapper">
+                <img src={prod.imagen} alt={prod.nombre} />
+              </div>
+              <div className="info">
+                <h3>{prod.nombre}</h3>
+                <p>{prod.descripcion}</p>
+                {/* PRECIO AGREGADO AQUÍ ABAJO */}
+                <span className="precio-tag">{prod.precio}</span>
+              </div>
+            </div>
+          ))}
         </div>
-        
-        <div style={{ marginTop: '2rem' }}>
-            <Link to="/delicias" className="boton">Ver todo el menú</Link>
+
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <Link to="/delicias" className="boton">
+            Ver Catálogo Completo
+          </Link>
         </div>
       </section>
     </main>
-  )
+  );
 }
 
-export default Home
+export default Home;
