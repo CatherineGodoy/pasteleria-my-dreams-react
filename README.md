@@ -1,6 +1,6 @@
 # 🧁 Pastelería My Dreams — Fullstack Web App
 
-¡Bienvenida a la versión final de **Pastelería My Dreams**! 🚀
+¡Bienvenido a la versión final de **Pastelería My Dreams**! 🚀
 Este proyecto ha evolucionado de un sitio estático a una aplicación **Fullstack** robusta. Se reconstruyó como una **Single Page Application (SPA)** con React, conectada a un backend profesional en Java Spring Boot.
 
 ---
