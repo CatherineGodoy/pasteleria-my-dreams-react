@@ -1,30 +1,40 @@
-# 🧁 Pastelería My Dreams — React App
+# 🧁 Pastelería My Dreams — Fullstack Web App
 
-> **Migración y modernización del sitio web 'Pastelería My Dreams'.** > La primera versión fue desarrollada con **HTML, CSS y JavaScript** clásico.  
-> En esta nueva entrega, el proyecto fue reconstruido como una **Single Page Application (SPA)** con **React**, utilizando **Vite** como bundler y **React Router** para la navegación.
-
----
-
-## ✨ Logros de esta Entrega
-
-- ✅ **Migración Completa:** Estructura modular basada en componentes reutilizables.
-- ✅ **Rutas Navegables:** Uso de `react-router-dom` para una experiencia fluida y sin recargas.
-- ✅ **Formulario de Contacto:** Validaciones de seguridad, contador de caracteres dinámico y feedback al usuario.
-- ✅ **Calidad de Código:** Implementación de pruebas unitarias y reportes de cobertura.
-- ✅ **UX/UI:** Diseño responsive, animaciones modernas y pantalla de mantenimiento.
+¡Bienvenida a la versión final de **Pastelería My Dreams**! 🚀
+Este proyecto ha evolucionado de un sitio estático a una aplicación **Fullstack** robusta. Se reconstruyó como una **Single Page Application (SPA)** con React, conectada a un backend profesional en Java Spring Boot.
 
 ---
 
-## 🛠️ Tecnologías
+## ✨ Logros de esta Entrega Final
 
-- ⚛️ **React 19** + **Vite 7**
-- 🌐 **React Router 7**
-- 🧪 **Vitest** + **React Testing Library**
-- 🎨 **CSS3** (Flexbox, Grid y Animaciones)
+* **Integración Fullstack:** Conexión en tiempo real con una API REST hospedada en **Render**.
+* **Admin Panel Pro:** Panel de administración protegido para gestionar el catálogo (CRUD completo: Crear, Leer, Actualizar, Borrar).
+* **Seguridad JWT:** Implementación de autenticación basada en Tokens (**JSON Web Tokens**) para asegurar el acceso administrativo.
+* **Persistencia de Datos:** Gestión de productos vinculada a una base de datos dinámica, permitiendo actualizaciones de stock y precios en vivo.
+* **Contacto Funcional:** Integración con el servicio **Formspree** para la recepción de mensajes reales, garantizando una comunicación efectiva con el cliente.
+* **Calidad de Software:** Implementación de pruebas unitarias con **Vitest** y reporte de cobertura de código.
+
+---
+
+## 🛠️ Stack Tecnológico
+
+### **Frontend**
+* ⚛️ **React 19 + Vite 7** (Arquitectura moderna y rápida)
+* 🌐 **React Router 7** (Gestión de rutas dinámicas)
+* 📡 **Axios** (Cliente HTTP para consumo de API REST)  <-- ¡AQUÍ!
+* 🧪 **Vitest + React Testing Library** (Garantía de calidad)
+
+### **Backend & DevOps**
+* 🍃 **Spring Boot** (Lógica de negocio y API REST)
+* ☁️ **Render** (Despliegue y Hosting de la infraestructura)
+* 🔑 **JWT** (Gestión de seguridad y sesiones)
+* 📧 **Formspree** (Servicio externo de mensajería)
 
 ---
 
 ## 💻 Instalación y Ejecución
+
+Para levantar el proyecto localmente, sigue estos pasos:
 
 ```bash
 # 1. Clonar el repositorio
@@ -40,44 +50,37 @@ npm install
 npm run dev
 
 
-🧪 Testing y Calidad
+## 🧪 Testing y Calidad
 
-Para asegurar que el formulario de contacto y los componentes funcionen correctamente, se utiliza Vitest:
+Para garantizar la robustez de la aplicación y una experiencia de usuario sin errores, se ha implementado una estrategia de pruebas unitarias utilizando **Vitest** y **React Testing Library**. 
 
-# Ejecutar los tests una vez
+### **Alcance de las Pruebas:**
+* **Validación de Formularios:** Verificación de reglas de negocio en el formulario de contacto (campos obligatorios, formato de email y contador de caracteres).
+* **Gestión de Inventario (CRUD):** Pruebas detalladas en el **Admin Panel** para asegurar el flujo de creación, lectura, eliminación y la **lógica de edición flexible** (donde la actualización de imagen es opcional).
+* **Seguridad y Acceso:** Verificación del comportamiento de los componentes ante la presencia o ausencia de tokens de autenticación.
+* **Reporte de Cobertura (Coverage):** Seguimiento del porcentaje de código probado, asegurando que las funciones críticas tengan una cobertura superior al 90%.
+
+### **Comandos de Ejecución:**
+
+```bash
+# Ejecutar la suite de pruebas completa
 npx vitest run
 
-# Ejecutar los tests y generar tabla de cobertura (%)
+# Generar reporte de cobertura detallado (%)
 npx vitest run --coverage
 
-# Abrir la interfaz gráfica de Vitest en el navegador
+# Abrir el dashboard gráfico de Vitest en el navegador
 npx vitest --ui
 
 
-🚧 Roadmap de Próximos Pasos
+🔄 Evolución del Proyecto (Hitos)
+Fase 1: Maquetación inicial (HTML/CSS/JS Estático).
 
-🔹 Fase de Calidad (¡Completada! 🧪)
-[x] Formulario de contacto con validaciones.
+Fase 2: Migración a React y creación de componentes reutilizables.
 
-[x] Configuración de Vitest / Testing Library.
+Fase 3: Implementación de Pruebas Unitarias y validaciones de usuario.
 
-[x] Creación de carpeta /tests y pruebas unitarias con cobertura total.
-
-🔹 Fase de Escalabilidad
-[ ] Implementación de Backend y Base de Datos.
-
-[ ] Sistema de autenticación de usuarios.
-
-🔄 Evolución del Proyecto
-
-Este proyecto representa el paso de un sitio estático a una aplicación web moderna. Se logró:
-
-Modularización de la lógica.
-
-Mejor mantenimiento del código.
-
-Integración de herramientas de testing profesional.
+Fase 4 (Meta): Integración con Backend (Spring Boot), autenticación JWT y despliegue final en Render.
 
 👩‍💻 Autor
-
-Desarrollado con ❤️ por **Catherine Godoy** | [🔗 Perfil de GitHub](https://github.com/CatherineGodoy)
+Desarrollado con ❤️ por **Catherine Godoy** | 🔗 [Visita mi Perfil de GitHub](https://github.com/CatherineGodoy)
