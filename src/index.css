@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
 
 body {
-  background-color: #fff0f5; /* El rosado suave que te gusta */
+  background-color: #fff0f5; 
   font-family: "Montserrat", sans-serif;
   color: #5d405d;
   margin: 0;
@@ -12,11 +12,11 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ocupa el 100% de la pantalla */
+  min-height: 100vh; 
 }
 
 .main-content {
-  flex: 1; /* Esto empuja al footer hacia abajo automáticamente */
+  flex: 1; 
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;

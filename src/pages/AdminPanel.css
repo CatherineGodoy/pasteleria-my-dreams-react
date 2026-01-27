@@ -1,0 +1,169 @@
+/* --- CONTENEDOR RAÍZ  --- */
+.admin-layout-container {
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fcf8f9;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.admin-panel-card {
+  width: 100%;
+  max-width: 850px;
+}
+
+/*  TÍTULOS  */
+
+.admin-layout-container .admin-titulo-principal {
+  font-family: 'Great Vibes', cursive !important;
+  color: #d95386;
+  font-size: 3.5rem !important; 
+  text-align: center;
+  margin-top: 0 !important; 
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.admin-layout-container .admin-titulo-formulario {
+  font-family: 'Great Vibes', cursive !important;
+  color: #d95386;
+  font-size: 2.8rem !important;
+  margin-top: 10px !important;
+  margin-bottom: 35px; 
+  text-align: center;
+  font-weight: 400;
+}
+
+.admin-subtitulo-bienvenida {
+  text-align: center;
+  color: #5d405d;
+  margin-bottom: 25px; 
+  font-size: 1.1rem;
+}
+
+.admin-user-name {
+  font-weight: 700;
+  color: #d95386;
+}
+/* --- FORMULARIO --- */
+.admin-seccion-gestion {
+  background-color: white;
+  padding: 40px 30px; 
+  border-radius: 20px;
+  margin-bottom: 40px;
+  border: 1px solid #fce4ec;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.admin-full-width { grid-column: span 2; }
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-layout-container .admin-form-group label {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+  color: #5d405d;
+  font-size: 0.95rem;
+  font-style: normal !important;
+}
+
+.admin-form-group input, 
+.admin-form-group select, 
+.admin-form-group textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fffdfd;
+}
+
+/* --- BOTONES --- */
+.admin-botonera {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.admin-btn-principal {
+  background-color: #d95386;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.admin-btn-principal:hover {
+  background-color: #c03568;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(217, 83, 134, 0.3);
+}
+
+/* --- TABLA --- */
+.admin-tabla-container {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.admin-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-tabla th {
+  background-color: #d95386;
+  color: white;
+  padding: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.admin-tabla td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #fce4ec;
+  font-family: 'Montserrat', sans-serif;
+  color: #5d405d;
+}
+
+.admin-btn-pill {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: #d95386;
+  color: white;
+  margin: 0 4px;
+  transition: 0.2s;
+}
+
+.admin-btn-pill:hover {
+  transform: scale(1.1);
+}
+
+.admin-img-tabla {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}

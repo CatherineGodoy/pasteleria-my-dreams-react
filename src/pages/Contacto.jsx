@@ -12,31 +12,25 @@ const Contacto = () => {
 
   const [errores, setErrores] = useState({});
   const [mostrarExito, setMostrarExito] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    
-    // BLOQUEO DE LETRAS: Si es el teléfono, eliminamos todo lo que no sea número
     if (id === "telefono") {
       const soloNumeros = value.replace(/\D/g, ""); 
       setFormData({ ...formData, [id]: soloNumeros });
     } else {
       setFormData({ ...formData, [id]: value });
     }
-
-    if (errores[id]) {
-      setErrores({ ...errores, [id]: "" });
-    }
+    if (errores[id]) setErrores({ ...errores, [id]: "" });
   };
 
   const validarFormulario = () => {
     let nuevosErrores = {};
     let esValido = true;
-
     const patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
     const patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Validación Nombre
     if (!formData.nombre.trim()) {
       nuevosErrores.nombre = "Por favor, ingresa tu nombre.";
       esValido = false;
@@ -45,36 +39,22 @@ const Contacto = () => {
       esValido = false;
     }
 
-    // Validación Email
-    if (!formData.email.trim()) {
-      nuevosErrores.email = "El correo electrónico es obligatorio.";
-      esValido = false;
-    } else if (!patronEmail.test(formData.email)) {
-      nuevosErrores.email = "Ingresa un formato de correo válido.";
+    if (!formData.email.trim() || !patronEmail.test(formData.email)) {
+      nuevosErrores.email = "Ingresa un correo electrónico válido.";
       esValido = false;
     }
 
-    // LÓGICA MEJORADA DE TELÉFONO
-    const telLimpio = formData.telefono.trim();
-    if (!telLimpio) {
-      nuevosErrores.telefono = "El teléfono es obligatorio.";
-      esValido = false;
-    } else if (!/^\d+$/.test(telLimpio)) {
-      nuevosErrores.telefono = "No se permiten letras, ingresa solo números.";
-      esValido = false;
-    } else if (telLimpio.length !== 8) {
-      nuevosErrores.telefono = "El teléfono debe tener exactamente 8 dígitos.";
+    if (formData.telefono.length !== 8) {
+      nuevosErrores.telefono = "El teléfono debe tener 8 dígitos.";
       esValido = false;
     }
 
-    // Validación Asunto
     if (!formData.asunto) {
       nuevosErrores.asunto = "Selecciona un motivo.";
       esValido = false;
     }
 
-    // Validación Mensaje
-    if (!formData.mensaje.trim() || formData.mensaje.length < 20) {
+    if (formData.mensaje.trim().length < 20) {
       nuevosErrores.mensaje = "Tu mensaje debe tener al menos 20 caracteres.";
       esValido = false;
     }
@@ -83,72 +63,88 @@ const Contacto = () => {
     return esValido;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validarFormulario()) {
-      setMostrarExito(true);
-      // Aquí es donde conectarás la fetch(API) pronto
-      setFormData({ nombre: "", email: "", telefono: "", asunto: "", mensaje: "" });
-      setTimeout(() => setMostrarExito(false), 5000);
+    if (!validarFormulario()) return;
+
+    setLoading(true);
+
+    try {
+      // USANDO TU ENDPOINT REAL
+      const response = await fetch("https://formspree.io/f/mlgjkovz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setMostrarExito(true);
+        setFormData({ nombre: "", email: "", telefono: "", asunto: "", mensaje: "" });
+        setTimeout(() => setMostrarExito(false), 5000);
+      } else {
+        alert("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+      }
+    } catch (error) {
+      alert("Error de conexión. Revisa tu internet.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <main className="main-content">
       <h1 className="titulo-principal">¡Contáctanos!</h1>
-      <p className="subtitulo-home">
-        Tu opinión es nuestro ingrediente secreto. Cuéntanos qué necesitas.
-      </p>
+      <p className="subtitulo-home">Tu opinión es nuestro ingrediente secreto.</p>
 
       <div className="formulario-container">
         <form onSubmit={handleSubmit} noValidate>
           
           <div className="form-group">
             <label htmlFor="nombre">Nombre Completo:</label>
-            <input
-              type="text"
-              id="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
+            <input 
+              type="text" 
+              id="nombre" 
+              value={formData.nombre} 
+              onChange={handleChange} 
+              className={errores.nombre ? "input-error" : ""} 
               placeholder="Ej: María Pérez"
-              className={errores.nombre ? "input-error" : ""}
             />
             {errores.nombre && <span className="error-text">{errores.nombre}</span>}
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Correo Electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Ej: maria@correo.com"
-              className={errores.email ? "input-error" : ""}
+            <input 
+              type="email" 
+              id="email" 
+              value={formData.email} 
+              onChange={handleChange} 
+              className={errores.email ? "input-error" : ""} 
+              placeholder="maria@correo.com"
             />
             {errores.email && <span className="error-text">{errores.email}</span>}
           </div>
 
           <div className="form-group">
             <label htmlFor="telefono">Teléfono (+56 9):</label>
-            <input
-              type="tel"
-              id="telefono"
-              value={formData.telefono}
-              onChange={handleChange}
-              placeholder="1234 5678"
-              maxLength="8" // Evita que escriban más de 8
-              className={errores.telefono ? "input-error" : ""}
+            <input 
+              type="tel" 
+              id="telefono" 
+              value={formData.telefono} 
+              onChange={handleChange} 
+              maxLength="8" 
+              className={errores.telefono ? "input-error" : ""} 
+              placeholder="12345678"
             />
             {errores.telefono && <span className="error-text">{errores.telefono}</span>}
           </div>
 
           <div className="form-group">
             <label htmlFor="asunto">Motivo del mensaje:</label>
-            <select
-              id="asunto"
-              value={formData.asunto}
-              onChange={handleChange}
+            <select 
+              id="asunto" 
+              value={formData.asunto} 
+              onChange={handleChange} 
               className={errores.asunto ? "input-error" : ""}
             >
               <option value="">Selecciona una opción...</option>
@@ -162,27 +158,27 @@ const Contacto = () => {
 
           <div className="form-group">
             <label htmlFor="mensaje">Tu Mensaje:</label>
-            <textarea
-              id="mensaje"
-              rows="5"
-              value={formData.mensaje}
-              onChange={handleChange}
-              placeholder="Cuéntanos cómo podemos ayudarte..."
-              className={errores.mensaje ? "input-error" : ""}
+            <textarea 
+              id="mensaje" 
+              rows="5" 
+              value={formData.mensaje} 
+              onChange={handleChange} 
+              className={errores.mensaje ? "input-error" : ""} 
+              placeholder="Escribe aquí..."
             ></textarea>
-            <small className="char-count">
+            <small className={`char-count ${formData.mensaje.length > 450 ? 'limit-near' : ''}`}>
               {500 - formData.mensaje.length} caracteres restantes
             </small>
             {errores.mensaje && <span className="error-text">{errores.mensaje}</span>}
           </div>
 
-          <button type="submit" className="boton">
-            Enviar mensaje 
+          <button type="submit" className="boton-principal" disabled={loading}>
+            {loading ? "Enviando..." : "Enviar mensaje"}
           </button>
 
           {mostrarExito && (
-            <div className="mensaje-exito-alerta">
-              ¡Gracias! Mensaje recibido con éxito. 🧁
+            <div className="mensaje-exito-alerta" style={{marginTop: '20px', color: '#d95386', fontWeight: 'bold', textAlign: 'center'}}>
+              ¡Gracias! Mensaje enviado con éxito. Revisa tu correo. 🧁
             </div>
           )}
         </form>

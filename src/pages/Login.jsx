@@ -1,75 +1,98 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUsuario } from '../service/AuthService'; 
 import '../App.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [mostrarPassword, setMostrarPassword] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (username === "admin" && password === "admin123") {
-      localStorage.setItem("userToken", "token_my_dreams_2026");
-      alert("¡Bienvenida de nuevo!");
-      navigate('/'); 
-    } else {
-      setError('Usuario o contraseña incorrectos.');
+    if (!username.trim() || !password.trim()) {
+      setError('Por favor, completa todos los campos.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const data = await loginUsuario(username, password);
+
+      if (data.token) {
+        /** *CAMBIO CLAVE PARA SEGURIDAD:
+         * Usamos 'sessionStorage' en lugar de 'localStorage'.
+         * Esto hace que la sesión sea VOLÁTIL: si cierras la pestaña o el navegador,
+         * los datos se borran automáticamente y el usuario deberá loguearse de nuevo.
+         * Es el estándar para paneles de administración.
+         */
+        sessionStorage.setItem("userToken", data.token); 
+        sessionStorage.setItem("userName", username);
+
+        if (username.toLowerCase() === 'admin') {
+          navigate('/admin'); 
+        } else {
+          window.location.href = "/"; 
+        }
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 401) {
+        setError('Usuario o contraseña incorrectos.');
+      } else {
+        setError('Hubo un problema al conectar. Inténtalo de nuevo.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <main className="main-content">
-      {/* TUS NUEVAS FRASES ACTUALIZADAS */}
       <h1 className="titulo-principal">Pastelería My Dreams</h1>
-      <p className="subtitulo-home">Bienvenido, accede para disfrutar lo mejor de nosotros</p>
+      <p className="subtitulo-home">Bienvenido al Sistema</p>
 
       <div className="formulario-container">
-        <p className="login-status-msg">Identifícate para continuar</p>
+        {error && (
+          <div className="error-message-box">
+            {error}
+          </div>
+        )}
 
-        {error && <div className="error-text" style={{ textAlign: 'center', marginBottom: '15px' }}>{error}</div>}
-
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="usuario">Nombre de Usuario:</label>
+            <label>Usuario</label>
             <input 
               type="text" 
-              id="usuario"
               value={username} 
               onChange={(e) => setUsername(e.target.value)} 
-              placeholder="Tu usuario"
-              required 
+              placeholder="Ingresa tu usuario"
+              required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Contraseña:</label>
-            <div className="password-wrapper">
-              <input 
-                type={mostrarPassword ? "text" : "password"} 
-                id="password"
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                placeholder="••••••••"
-                required 
-              />
-              <button 
-                type="button" 
-                className="btn-ver-password"
-                onClick={() => setMostrarPassword(!mostrarPassword)}
-              >
-                {mostrarPassword ? "✕" : "👁️"}
-              </button>
-            </div>
+            <label>Contraseña</label>
+            <input 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="Contraseña"
+              required
+            />
           </div>
 
-          <button type="submit" className="boton">
-            Entrar
+          <button 
+            type="submit" 
+            className="boton-principal boton-ancho" 
+            disabled={loading}
+          >
+            {loading ? "Verificando..." : "Ingresar"}
           </button>
         </form>
       </div>
