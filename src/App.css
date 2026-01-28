@@ -45,7 +45,6 @@ header nav ul li a:hover {
   color: #d95386;
 }
 
-/* --- ESTILO PARA EL BOTÓN ADMIN --- */
 .admin-nav-link {
   background-color: #fce4ec; 
   color: #d95386 !important;
@@ -139,9 +138,9 @@ header nav ul li a:hover {
   width: 100%;
 }
 
-/* =========================================
-   3. VITRINA Y PRODUCTOS
-   ========================================= */
+/* ================================
+   3. VITRINA Y PRODUCTOS 
+   ================================*/
 .vitrina {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -161,6 +160,7 @@ header nav ul li a:hover {
   overflow: hidden; 
   transition: all 0.3s ease; 
   cursor: pointer;
+  height: auto; 
 }
 
 .producto:hover {
@@ -173,7 +173,6 @@ header nav ul li a:hover {
   height: 230px; 
   overflow: hidden; 
   border-radius: 15px;
-  margin-bottom: 15px;
 }
 
 .img-wrapper img {
@@ -181,19 +180,36 @@ header nav ul li a:hover {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease; /* Preparamos para zoom en la foto */
+  transition: transform 0.5s ease; 
 }
 
-/* 🚀 EFECTO EXTRA: La foto hace un pequeño zoom al pasar el mouse */
+/* EFECTO DE ZOOM AL PASAR EL MOUSE POR EL CONTENEDOR */
 .producto:hover .img-wrapper img {
   transform: scale(1.1);
+}
+
+.producto .info {
+  padding: 10px 20px 20px 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
 }
 
 .producto h3 {
   font-family: 'Great Vibes', cursive;
   font-size: 2.2rem;
   color: #d95386;
-  margin: 10px 0;
+  margin: 5px 0; 
+}
+
+.producto-descripcion {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem !important; 
+  line-height: 1.4 !important;   
+  color: #6d506d !important;     
+  margin: 5px 0 10px 0 !important;
+  text-align: center;
+  word-wrap: break-word;         
 }
 
 .precio-tag {
@@ -201,11 +217,12 @@ header nav ul li a:hover {
   font-weight: 800; 
   color: #d95386;
   font-size: 1.5rem; 
-  margin-top: auto; /* Empuja el precio siempre al fondo de la tarjeta */
-  padding-top: 15px;
+  margin-top: 5px !important; 
+  padding-top: 5px;
 }
+
 /* =========================================
-   4. BOTONES REUTILIZABLES (Independientes)
+   4. BOTONES REUTILIZABLES
    ========================================= */
 .boton-principal {
   background-color: #d95386;
@@ -222,31 +239,19 @@ header nav ul li a:hover {
   text-align: center;
 }
 
-.boton-ancho {
-  width: 100%; /* Esta es la variante para el Login */
-  display: block;
-}
-
 .boton-principal:hover {
   background-color: #c03568;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(217, 83, 134, 0.3);
 }
 
-.boton-principal:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  transform: none;
-}
-
 /* =========================================
-   5. FORMULARIOS Y MENSAJES (ACTUALIZADO)
+   5. FORMULARIOS Y MENSAJES
    ========================================= */
 .formulario-container {
   max-width: 500px; 
   margin: 0 auto 100px auto; 
   padding: 40px; 
-  /* CAMBIO: Ahora es blanco con borde rosado como el título */
   background-color: #ffffff; 
   border: 2px solid #fce4ec; 
   border-radius: 30px;
@@ -258,74 +263,19 @@ header nav ul li a:hover {
   flex-direction: column;
   text-align: left;
   margin-bottom: 20px;
-  position: relative;
 }
 
-/* Inputs, Selects y Textareas */
 .form-group input, 
 .form-group select, 
 .form-group textarea {
   width: 100%;
   padding: 14px;
-  /* CAMBIO: Borde más suave acorde al nuevo estilo */
   border: 2px solid #fcf2f5; 
   border-radius: 15px;
   outline: none;
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   background-color: #fffdfd;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus, 
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #d95386;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(217, 83, 134, 0.1);
-}
-
-/* --- MANTENEMOS LOS ESTILOS DE ERRORES (Son necesarios) --- */
-
-.input-error {
-  border-color: #dc3545 !important;
-  background-color: #fff8f8;
-}
-
-.error-text {
-  color: #dc3545;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-top: 5px;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.error-message-box {
-  color: #721c24;
-  background-color: #f8d7da;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  text-align: center;
-  border: 1px solid #f5c6cb;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-}
-
-/* Contador de caracteres */
-.char-count {
-  display: block;
-  text-align: right;
-  font-size: 0.8rem;
-  color: #888;
-  margin-top: 5px;
-  font-family: 'Montserrat', sans-serif;
-  font-style: italic;
-}
-
-.char-count.limit-near {
-  color: #dc3545;
-  font-weight: bold;
 }
 
 /* =========================================
@@ -337,7 +287,6 @@ header nav ul li a:hover {
   align-items: center;
   justify-content: center; 
   min-height: 60vh; 
-  gap: 20px;
 }
 
 .spinner {
@@ -353,7 +302,6 @@ header nav ul li a:hover {
   100% { transform: rotate(360deg); } 
 }
 
-/* --- CLASE PARA TÍTULOS DE OTRAS PÁGINAS (Login, Contacto, Delicias) --- */
 .header-pagina-compacto {
   max-width: 800px;
   width: 90%;
@@ -363,5 +311,4 @@ header nav ul li a:hover {
   border-radius: 40px;
   padding: 40px 30px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(217, 83, 134, 0.05);
 }
