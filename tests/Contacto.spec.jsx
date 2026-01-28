@@ -2,59 +2,68 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { vi, describe, test, expect } from "vitest"; // Aseguramos importar vi
 import Contacto from "../src/pages/Contacto"; 
 
-describe("Pruebas de Formulario - Cobertura Total", () => {
+// Mock de SweetAlert2 para que no explote en el test
+import Swal from 'sweetalert2';
+vi.mock('sweetalert2', () => ({
+  default: {
+    fire: vi.fn().mockResolvedValue({ isConfirmed: true })
+  }
+}));
+
+describe("Pruebas de Formulario de Contacto - My Dreams", () => {
   
-  test("1. Debe validar campos vacíos (Línea 20)", () => {
+  test("1. Debe mostrar errores de validación cuando los campos están vacíos", async () => {
     render(<Contacto />);
-    const boton = screen.getByRole("button");
+    const boton = screen.getByRole("button", { name: /Enviar mensaje/i });
     fireEvent.click(boton);
     
-    // Verificamos que el input de nombre tenga el borde rojo de error
-    const nombreInput = screen.getByPlaceholderText(/María Pérez/i);
-    expect(nombreInput).toHaveStyle({ borderColor: 'rgb(217, 83, 134)' });
+    expect(await screen.findByText(/Por favor, ingresa tu nombre/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Ingresa un correo electrónico válido/i)).toBeInTheDocument();
+    expect(screen.getByText(/Selecciona un motivo/i)).toBeInTheDocument();
   });
 
-  test("2. Debe validar formato de teléfono (Líneas 36-37)", () => {
+  test("2. Debe validar que el teléfono tenga 8 dígitos", () => {
     render(<Contacto />);
-    const telInput = screen.getByPlaceholderText(/1234 5678/i);
-    // Ponemos un teléfono inválido
+    const telInput = screen.getByPlaceholderText(/12345678/i);
+    
     fireEvent.change(telInput, { target: { value: "123" } });
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(screen.getByRole("button", { name: /Enviar mensaje/i }));
     
-    expect(telInput).toHaveStyle({ borderColor: 'rgb(217, 83, 134)' });
+    expect(screen.getByText(/El teléfono debe tener 8 dígitos/i)).toBeInTheDocument();
   });
 
-  test("3. Debe validar longitud del mensaje (Líneas 44-45)", () => {
+  test("3. El contador de caracteres debe mostrar el espacio restante (500 - largo)", () => {
     render(<Contacto />);
-    const textarea = screen.getByPlaceholderText(/me gustaría cotizar/i);
-    // Mensaje muy corto
-    fireEvent.change(textarea, { target: { value: "Corto" } });
-    fireEvent.click(screen.getByRole("button"));
-    
-    expect(textarea).toHaveStyle({ borderColor: 'rgb(217, 83, 134)' });
+    const textarea = screen.getByPlaceholderText(/Escribe aquí\.\.\./i);
+    fireEvent.change(textarea, { target: { value: "Hola" } });
+    expect(screen.getByText(/496 caracteres restantes/i)).toBeInTheDocument();
   });
 
-  test("4. Envío exitoso completo (Líneas 53-73)", async () => {
+  test("4. Envío exitoso con todos los campos válidos", async () => {
+    global.fetch = vi.fn().mockResolvedValue({ ok: true });
+
     render(<Contacto />);
     
-    // Llenamos todo correctamente para entrar en la rama de éxito
-    fireEvent.change(screen.getByPlaceholderText(/María Pérez/i), { target: { value: "Usuario Test" } });
-    fireEvent.change(screen.getByPlaceholderText(/maria@correo.com/i), { target: { value: "test@test.com" } });
-    fireEvent.change(screen.getByPlaceholderText(/1234 5678/i), { target: { value: "12345678" } });
+    fireEvent.change(screen.getByPlaceholderText(/Ej: María Pérez/i), { target: { value: "Catherine Test" } });
+    fireEvent.change(screen.getByPlaceholderText(/maria@correo.com/i), { target: { value: "cat@test.com" } });
+    fireEvent.change(screen.getByPlaceholderText(/12345678/i), { target: { value: "98765432" } });
     
     const select = screen.getByRole("combobox");
     fireEvent.change(select, { target: { value: "pedido" } });
 
-    const textarea = screen.getByPlaceholderText(/me gustaría cotizar/i);
-    fireEvent.change(textarea, { target: { value: "Este mensaje es suficientemente largo para que el formulario se envíe con éxito." } });
+    const textarea = screen.getByPlaceholderText(/Escribe aquí\.\.\./i);
+    fireEvent.change(textarea, { target: { value: "Hola, este es un mensaje de prueba con más de veinte caracteres para que pase la validación." } });
 
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(screen.getByRole("button", { name: /Enviar mensaje/i }));
 
-    // Esperamos el mensaje de éxito que resetea el formulario
     await waitFor(() => {
-      expect(screen.getByText(/Hemos recibido tu mensaje/i)).toBeInTheDocument();
-    }, { timeout: 3000 });
+      expect(Swal.fire).toHaveBeenCalledWith(expect.objectContaining({
+        icon: 'success',
+        title: '¡Mensaje enviado!'
+      }));
+    });
   });
 });

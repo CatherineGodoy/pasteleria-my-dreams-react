@@ -37,6 +37,17 @@ function AdminPanel() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!nuevoProducto.nombre || !nuevoProducto.precio || !nuevoProducto.categoria || !nuevoProducto.imagenUrl) {
+      Swal.fire({
+        title: "Campos incompletos",
+        text: "Por favor, completa todos los datos del dulce antes de continuar. 🧁",
+        icon: "warning",
+        confirmButtonColor: "#d95386",
+      });
+      return;
+    }
+
     const metodo = editandoId ? "PUT" : "POST";
     const urlFinal = editandoId ? `${urlApi}/${editandoId}` : urlApi;
 
@@ -119,94 +130,79 @@ function AdminPanel() {
       <div className="admin-panel-card">
         <h1 className="admin-titulo-principal">Gestión My Dreams</h1>
         <p className="admin-subtitulo-bienvenida">
-          Bienvenida, <span className="admin-user-name">{username}</span> 🌸
+          Bienvenida, <span className="admin-user-name">{username}</span> 
         </p>
 
         <div className="admin-seccion-gestion">
           <h2 className="admin-titulo-formulario">
             {editandoId ? "Modificar Dulce" : "Nuevo Ingreso"}
           </h2>
-          <form onSubmit={handleSubmit} className="admin-formulario">
+          
+          {/* noValidate quita el globo naranja del navegador */}
+          <form onSubmit={handleSubmit} className="admin-formulario" noValidate>
             <div className="admin-form-group">
-              <label>Nombre del Producto</label>
+              <label htmlFor="nombre">Nombre del Producto</label>
               <input
                 type="text"
                 id="nombre"
                 value={nuevoProducto.nombre}
                 onChange={handleChange}
-                required
               />
             </div>
             <div className="admin-form-group">
-              <label>Precio</label>
+              <label htmlFor="precio">Precio</label>
               <input
                 type="number"
                 id="precio"
                 value={nuevoProducto.precio}
                 onChange={handleChange}
-                required
               />
             </div>
             <div className="admin-form-group admin-full-width">
-              <label>Descripción</label>
+              <label htmlFor="descripcion">Descripción</label>
               <textarea
                 id="descripcion"
                 value={nuevoProducto.descripcion}
                 onChange={handleChange}
-                required
               />
             </div>
 
             <div className="admin-form-group">
-              <label>Sección en Web</label>
+              <label htmlFor="categoria">Sección en Web</label>
               <select
                 id="categoria"
                 value={nuevoProducto.categoria}
                 onChange={handleChange}
-                required
               >
                 <option value="">-- Seleccionar Sección --</option>
                 <option value="Sabores Frutales">Sabores Frutales</option>
                 <option value="Nuestras Tortas">Nuestras Tortas</option>
-                <option value="Tentaciones Individuales">
-                  Tentaciones Individuales
-                </option>
+                <option value="Tentaciones Individuales">Tentaciones Individuales</option>
                 <option value="Queques Artesanales">Queques Artesanales</option>
               </select>
             </div>
 
             <div className="admin-form-group">
-              <label>Imagen del Archivo</label>
+              <label htmlFor="imagenUrl">Imagen del Archivo</label>
               <select
                 id="imagenUrl"
                 value={nuevoProducto.imagenUrl}
                 onChange={handleChange}
-                required={!editandoId}
               >
                 <option value="">-- Seleccionar Imagen --</option>
                 <option value="alfajor.jpg">alfajor.jpg</option>
-                <option value="brownieChocolateNuez.jpg">
-                  brownieChocolateNuez.jpg
-                </option>
+                <option value="brownieChocolateNuez.jpg">brownieChocolateNuez.jpg</option>
                 <option value="carlotaMango.jpg">carlotaMango.jpg</option>
-                <option value="cupcakesVariedades.jpg">
-                  cupcakesVariedades.jpg
-                </option>
+                <option value="cupcakesVariedades.jpg">cupcakesVariedades.jpg</option>
                 <option value="donasGlaseadas.jpg">donasGlaseadas.jpg</option>
-                <option value="kutchenDeManzana.jpg">
-                  kutchenDeManzana.jpg
-                </option>
+                <option value="kutchenDeManzana.jpg">kutchenDeManzana.jpg</option>
                 <option value="miniTartaletas.jpg">miniTartaletas.jpg</option>
-                <option value="muffinsPlatanoArandano.jpg">
-                  muffinsPlatanoArandano.jpg
-                </option>
+                <option value="muffinsPlatanoArandano.jpg">muffinsPlatanoArandano.jpg</option>
                 <option value="pieDeLimon.jpg">pieDeLimon.jpg</option>
                 <option value="pieMaracuya.jpg">pieMaracuya.jpg</option>
                 <option value="quequeArandano.jpg">quequeArandano.jpg</option>
                 <option value="quequeChoc.jpg">quequeChoc.jpg</option>
-                <option value="quequeMarmoladoVainilla.jpg">
-                  quequeMarmoladoVainilla.jpg
-                </option>
+                <option value="quequeMarmoladoVainilla.jpg">quequeMarmoladoVainilla.jpg</option>
                 <option value="quequePlatano.jpg">quequePlatano.jpg</option>
                 <option value="quequeVainilla.jpg">quequeVainilla.jpg</option>
                 <option value="rollosDeCanela.jpg">rollosDeCanela.jpg</option>
@@ -214,13 +210,9 @@ function AdminPanel() {
                 <option value="tartaYogurth.jpg">tartaYogurth.jpg</option>
                 <option value="torta3Leches.jpg">torta3Leches.jpg</option>
                 <option value="tortaCremaPina.jpg">tortaCremaPina.jpg</option>
-                <option value="tortaManjarLucuma.jpg">
-                  tortaManjarLucuma.jpg
-                </option>
+                <option value="tortaManjarLucuma.jpg">tortaManjarLucuma.jpg</option>
                 <option value="tortaManjarNuez.jpg">tortaManjarNuez.jpg</option>
-                <option value="tortaMerengueFrambueza.jpg">
-                  tortaMerengueFrambueza.jpg
-                </option>
+                <option value="tortaMerengueFrambueza.jpg">tortaMerengueFrambueza.jpg</option>
                 <option value="tortaMoka.jpg">tortaMoka.jpg</option>
                 <option value="tortaSelvaNegra.jpg">tortaSelvaNegra.jpg</option>
               </select>
@@ -228,7 +220,7 @@ function AdminPanel() {
 
             <div className="admin-botonera">
               <button type="submit" className="admin-btn-principal">
-                {editandoId ? "🚀 Actualizar" : "✨ Publicar"}
+                {editandoId ? "Actualizar" : "Publicar"}
               </button>
               {editandoId && (
                 <button
@@ -268,15 +260,14 @@ function AdminPanel() {
                       }}
                     />
                   </td>
-                  <td>
-                    <strong>{prod.nombre}</strong>
-                  </td>
+                  <td><strong>{prod.nombre}</strong></td>
                   <td>{prod.categoria}</td>
                   <td>${Number(prod.precio).toLocaleString("es-CL")}</td>
                   <td>
                     <button
                       className="admin-btn-pill"
                       onClick={() => prepararEdicion(prod)}
+                      aria-label="✏️"
                     >
                       ✏️
                     </button>
@@ -284,6 +275,7 @@ function AdminPanel() {
                       className="admin-btn-pill"
                       style={{ backgroundColor: "#5d405d" }}
                       onClick={() => eliminarProducto(prod.id)}
+                      aria-label="🗑️"
                     >
                       🗑️
                     </button>

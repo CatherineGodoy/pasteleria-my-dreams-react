@@ -183,7 +183,6 @@ header nav ul li a:hover {
   transition: transform 0.5s ease; 
 }
 
-/* EFECTO DE ZOOM AL PASAR EL MOUSE POR EL CONTENEDOR */
 .producto:hover .img-wrapper img {
   transform: scale(1.1);
 }
@@ -192,7 +191,6 @@ header nav ul li a:hover {
   padding: 10px 20px 20px 20px; 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
 }
 
 .producto h3 {
@@ -206,10 +204,10 @@ header nav ul li a:hover {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem !important; 
   line-height: 1.4 !important;   
-  color: #6d506d !important;     
+  color: #6d506d !important;      
   margin: 5px 0 10px 0 !important;
   text-align: center;
-  word-wrap: break-word;         
+  word-wrap: break-word;          
 }
 
 .precio-tag {
@@ -246,23 +244,30 @@ header nav ul li a:hover {
 }
 
 /* =========================================
-   5. FORMULARIOS Y MENSAJES
+   5. FORMULARIOS Y MENSAJES (ESTRUCTURA Y VALIDACIÓN)
    ========================================= */
 .formulario-container {
-  max-width: 500px; 
+  max-width: 550px; 
   margin: 0 auto 100px auto; 
   padding: 40px; 
   background-color: #ffffff; 
-  border: 2px solid #fce4ec; 
+  border: 1px solid #fce4ec; 
   border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(217, 83, 134, 0.05);
+  box-shadow: 0 10px 30px rgba(217, 83, 134, 0.08);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #5d405d;
+  margin-bottom: 8px;
 }
 
 .form-group input, 
@@ -270,12 +275,47 @@ header nav ul li a:hover {
 .form-group textarea {
   width: 100%;
   padding: 14px;
-  border: 2px solid #fcf2f5; 
+  border: 1px solid #ddd; 
   border-radius: 15px;
   outline: none;
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   background-color: #fffdfd;
+  transition: border-color 0.3s;
+}
+
+.input-error {
+  border: 2px solid #d95386 !important; 
+  background-color: #fff5f8 !important; 
+  box-shadow: 0 0 8px rgba(217, 83, 134, 0.2);
+}
+
+.error-text {
+  color: #d95386; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 6px;
+  display: block;
+  animation: fadeInDown 0.3s ease;
+}
+
+.char-count {
+  font-size: 0.75rem;
+  color: #888;
+  display: block;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.limit-near {
+  color: #d95386;
+  font-weight: bold;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================

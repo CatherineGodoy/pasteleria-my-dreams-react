@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../App.css'; 
+import Swal from 'sweetalert2';
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const Contacto = () => {
   });
 
   const [errores, setErrores] = useState({});
-  const [mostrarExito, setMostrarExito] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -65,12 +65,19 @@ const Contacto = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validarFormulario()) return;
+    if (!validarFormulario()) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Formulario incompleto',
+            text: 'Por favor, revisa los campos marcados para continuar.',
+            confirmButtonColor: '#d95386'
+        });
+        return;
+    }
 
     setLoading(true);
 
     try {
-      // USANDO TU ENDPOINT REAL
       const response = await fetch("https://formspree.io/f/mlgjkovz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -78,14 +85,18 @@ const Contacto = () => {
       });
 
       if (response.ok) {
-        setMostrarExito(true);
+        Swal.fire({
+            icon: 'success',
+            title: '¡Mensaje enviado!',
+            text: 'Gracias por escribirnos, te contactaremos pronto. 🧁',
+            confirmButtonColor: '#d95386'
+        });
         setFormData({ nombre: "", email: "", telefono: "", asunto: "", mensaje: "" });
-        setTimeout(() => setMostrarExito(false), 5000);
       } else {
-        alert("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+        Swal.fire("Error", "No se pudo enviar el mensaje.", "error");
       }
     } catch (error) {
-      alert("Error de conexión. Revisa tu internet.");
+      Swal.fire("Error", "Error de conexión.", "error");
     } finally {
       setLoading(false);
     }
@@ -166,21 +177,17 @@ const Contacto = () => {
               className={errores.mensaje ? "input-error" : ""} 
               placeholder="Escribe aquí..."
             ></textarea>
-            <small className={`char-count ${formData.mensaje.length > 450 ? 'limit-near' : ''}`}>
-              {500 - formData.mensaje.length} caracteres restantes
-            </small>
+            <div className="form-footer-info">
+              <small className={`char-count ${formData.mensaje.length > 450 ? 'limit-near' : ''}`}>
+                {500 - formData.mensaje.length} caracteres restantes
+              </small>
+            </div>
             {errores.mensaje && <span className="error-text">{errores.mensaje}</span>}
           </div>
 
           <button type="submit" className="boton-principal" disabled={loading}>
             {loading ? "Enviando..." : "Enviar mensaje"}
           </button>
-
-          {mostrarExito && (
-            <div className="mensaje-exito-alerta" style={{marginTop: '20px', color: '#d95386', fontWeight: 'bold', textAlign: 'center'}}>
-              ¡Gracias! Mensaje enviado con éxito. Revisa tu correo. 🧁
-            </div>
-          )}
         </form>
       </div>
     </main>

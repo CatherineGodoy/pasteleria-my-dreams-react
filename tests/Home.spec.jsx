@@ -3,41 +3,58 @@ import { BrowserRouter } from "react-router-dom";
 import { describe, it, expect } from "vitest";
 import React from "react";
 import Home from "../src/pages/Home";
+import '@testing-library/jest-dom';
 
 describe("Pruebas de la Página Principal (Home)", () => {
-  it("debe renderizar el título principal y la bienvenida", () => {
+  it("debe renderizar el título principal y el eslogan", () => {
     render(
       <BrowserRouter>
         <Home />
       </BrowserRouter>
     );
     
-    // Verifica que el nombre de la pastelería esté presente
-    expect(screen.getByText(/My Dreams/i)).toBeInTheDocument();
+    // Verifica el título principal que programamos hoy
+    expect(screen.getByText(/Bienvenido a Pastelería My Dreams/i)).toBeInTheDocument();
+    expect(screen.getByText(/sabores que iluminan tus sueños/i)).toBeInTheDocument();
   });
 
-  it("debe mostrar las imágenes de los productos (Kutchen, Pie, Torta)", () => {
+  it("debe mostrar los productos destacados con sus imágenes", () => {
     render(
       <BrowserRouter>
         <Home />
       </BrowserRouter>
     );
 
-    // Buscamos las imágenes por su atributo 'alt' 
-    // (Ajusta estos nombres a los que pusiste en el 'alt' de tus etiquetas <img>)
+    // Verificamos que se rendericen las imágenes de los favoritos
     const imagenes = screen.getAllByRole("img");
-    expect(imagenes.length).toBeGreaterThanOrEqual(1);
+    // Al menos deben estar las 3 de los productos destacados
+    expect(imagenes.length).toBeGreaterThanOrEqual(3);
   });
 
-  it("debe contener un llamado a la acción o sección de productos", () => {
+  it("debe mostrar los nombres y precios de los favoritos", () => {
     render(
       <BrowserRouter>
         <Home />
       </BrowserRouter>
     );
     
-    // Verifica que existan palabras clave de tu catálogo
-    // Si tus productos tienen estos nombres, el test pasará:
-    expect(screen.queryByText(/Kutchen/i) || screen.queryByText(/Pie/i) || screen.queryByText(/Torta/i)).toBeDefined();
+    // Verificamos productos específicos que definimos en el array de Home.jsx
+    expect(screen.getByText(/Kutchen de Manzana/i)).toBeInTheDocument();
+    expect(screen.getByText(/Pie de Limón/i)).toBeInTheDocument();
+    expect(screen.getByText(/Torta Crema Piña/i)).toBeInTheDocument();
+    
+    // Verifica que los precios con formato estén presentes
+    expect(screen.getByText("$5.500")).toBeInTheDocument();
+  });
+
+  it("debe tener el botón que redirige al catálogo completo", () => {
+    render(
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    );
+    
+    const botonCatalogo = screen.getByRole("link", { name: /Ver Catálogo Completo/i });
+    expect(botonCatalogo).toHaveAttribute("href", "/delicias");
   });
 });

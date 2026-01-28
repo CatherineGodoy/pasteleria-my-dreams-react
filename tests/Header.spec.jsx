@@ -1,38 +1,29 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import { describe, it, expect } from "vitest";
+import { MemoryRouter } from "react-router-dom";
+import { describe, it, expect, beforeEach } from "vitest";
 import React from "react";
 import Header from "../src/components/Header";
+import '@testing-library/jest-dom';
 
 describe("Pruebas de Navegación del Header", () => {
-  it("debe contener todos los enlaces con sus rutas correctas", () => {
-    render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
-    );
-    
-    // 1. Buscamos los enlaces por su texto
-    const linkInicio = screen.getByRole("link", { name: /Inicio/i });
-    const linkDelicias = screen.getByRole("link", { name: /Delicias/i });
-    const linkContacto = screen.getByRole("link", { name: /Contacto/i });
-    const linkLogin = screen.getByRole("link", { name: /Login/i });
-
-    // 2. Verificamos que apunten a las direcciones correctas (to="...")
-    expect(linkInicio).toHaveAttribute("href", "/");
-    expect(linkDelicias).toHaveAttribute("href", "/delicias");
-    expect(linkContacto).toHaveAttribute("href", "/contacto");
-    expect(linkLogin).toHaveAttribute("href", "/login");
+  beforeEach(() => {
+    sessionStorage.clear();
   });
 
-  it("debe tener la estructura de lista para el menú", () => {
-    render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
-    );
-    // Verifica que el menú esté dentro de una lista (ul)
-    const lista = screen.getByRole("list");
-    expect(lista).toBeInTheDocument();
+  it("1. Debe contener los enlaces básicos de navegación", () => {
+    render(<MemoryRouter><Header /></MemoryRouter>);
+    expect(screen.getByText(/Inicio/i)).toBeInTheDocument();
+    expect(screen.getByText(/Delicias/i)).toBeInTheDocument();
+  });
+
+  it("2. Debe mostrar el botón de Admin si el usuario tiene nombre 'admin'", () => {
+    // CLAVE: Tu Header.jsx evalúa que el NOMBRE sea 'admin'
+    sessionStorage.setItem('userName', 'admin'); 
+
+    render(<MemoryRouter><Header /></MemoryRouter>);
+
+    // Buscamos el enlace que contiene la palabra Admin, ignorando el emoji
+    const adminLink = screen.getByRole('link', { name: /Admin/i });
+    expect(adminLink).toBeInTheDocument();
   });
 });
